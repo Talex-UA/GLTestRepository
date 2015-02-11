@@ -6,57 +6,61 @@ import java.util.List;
 
 public class Arrays {
 
-    private static final String ENTER_THE_NUMBER = "Please enter the number (\"quit\" to stop the program, "
-            + "\"get index\" to get index of smallest pair value difference, "
-            + "you have already entered ";
-    public static final String QUIT_TEXT = "quit";
-    public static final String STOPPED = "The program is stopped.";
-    public static final String GET_INDEX_TEXT = "get index";
-    public static final String TWO_NUMBERS_AT_LEAST = "Please enter two numbers at least.";
-    public static final String SMALLEST_PAIR_INDEX = "Index of smallest pair is: ";
-    public static final int MIN_NUMBERS_REQUIRED = 2;
-    public static final String INCORRECT_INPUT_PLEASE_REPEAT_ERROR = "Incorrect input, please repeat.";
-    public static final String INVALID_NUMBER_ERROR = "Invalid number.";
-    private static String printedString;
-    private static int printedNumber;
-    private static BufferedReader input;
+    private static final String ENTER_THE_NUMBER = "Enter the numbers by whitespace (type \"get index\" to get result): ";
+    private static final String TWO_NUMBERS_AT_LEAST = "Please enter two numbers at least.";
+    private static final String SMALLEST_PAIR_INDEX = "Index of smallest pair is: ";
+    private static final int MIN_NUMBERS_REQUIRED = 2;
+    private static final String INVALID_NUMBER_ERROR = "Invalid number.";
     private static List<Integer> listOfEnteredNumbers;
+    private static StringBuilder sb;
 
     public static void main(String[] args) {
-        input = new BufferedReader(new InputStreamReader(System.in));
+        String printedString;
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         listOfEnteredNumbers = new ArrayList<Integer>();
+        sb = new StringBuilder();
 
-        while (true) {
-            System.out.println(ENTER_THE_NUMBER + listOfEnteredNumbers.size() + " numbers):");
-            try {
-                printedString = input.readLine();
-                if (printedString.equals(QUIT_TEXT)) {
-                    System.out.println(STOPPED);
-                    break;
-                } else if (printedString.equals(GET_INDEX_TEXT) && listOfEnteredNumbers.size() < MIN_NUMBERS_REQUIRED) {
-                    System.out.println(TWO_NUMBERS_AT_LEAST);
-                } else if (printedString.equals(GET_INDEX_TEXT)) {
-                    System.out.println(SMALLEST_PAIR_INDEX
-                            + getIndexOfSmallestPairValueDifference(listOfEnteredNumbers));
-                    break;
+        System.out.println(ENTER_THE_NUMBER);
+        try {
+            printedString = input.readLine();
+            for (int i = 0; i < printedString.length(); i++) {
+                if (printedString.charAt(i) != ' ') {
+                    sb.append(printedString.charAt(i));
                 } else {
-                    printedNumber = Integer.parseInt(printedString);
-                    listOfEnteredNumbers.add(printedNumber);
+                    convertToIntegerAndAddToList(sb, listOfEnteredNumbers);
                 }
-            } catch (IOException e) {
-                System.out.println(INCORRECT_INPUT_PLEASE_REPEAT_ERROR);
-            } catch (NumberFormatException e) {
-                System.out.println(INVALID_NUMBER_ERROR);
             }
+            if (sb.length() != 0) {
+                convertToIntegerAndAddToList(sb, listOfEnteredNumbers);
+            }
+        } catch (IOException e) {
+            System.out.println(INVALID_NUMBER_ERROR);
+        } catch (NumberFormatException e) {
+            System.out.println(INVALID_NUMBER_ERROR);
         }
+
+        if (listOfEnteredNumbers.size() < MIN_NUMBERS_REQUIRED) {
+            System.out.println(TWO_NUMBERS_AT_LEAST);
+        } else {
+            System.out.println(SMALLEST_PAIR_INDEX
+                    + getIndexOfSmallestPairValueDifference
+                    (listOfEnteredNumbers.toArray(new Integer[listOfEnteredNumbers.size()])));
+        }
+
     }
 
-    private static int getIndexOfSmallestPairValueDifference(List<Integer> list) {
+    private static void convertToIntegerAndAddToList(
+            StringBuilder sb, List<Integer> listOfEnteredNumbers) throws NumberFormatException {
+        listOfEnteredNumbers.add(Integer.parseInt(sb.toString()));
+        sb.setLength(0);
+    }
+
+    private static int getIndexOfSmallestPairValueDifference(Integer[] array) {
         int minDifference = Integer.MAX_VALUE;
         int result = 0;
-        for (int i = 0; i < list.size() - 1; i++) {
-            int first = list.get(i);
-            int second = list.get(i + 1);
+        for (int i = 0; i < array.length - 1; i++) {
+            int first = array[i];
+            int second = array[i + 1];
             int currentDifference;
 
             currentDifference = Math.abs(first - second);
