@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Anagram {
 
@@ -8,29 +6,24 @@ public class Anagram {
     public static final String FIRST_STRING = "Enter first string: ";
     public static final String SECOND_STRING = "Enter second string: ";
     public static final String ONLY_LATIN_LETTERS = "[A-Za-z ]+";
-    public static final String INCORRECT_INPUT_ERROR = "Incorrect input, please repeat.";
     public static final String NEGATIVE_RESULT = "Strings are not anagrams.";
     public static final String POSITIVE_RESULT = "Strings are anagrams.";
 
     public static void main(String[] args) {
 
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        Scanner input = new Scanner(System.in);
         String[] twoStrings = new String[2];
 
         for (int i = 0; i < 2; i++) {
             if (i == 0) System.out.println(FIRST_STRING);
             else System.out.println(SECOND_STRING);
 
-            try {
-                String printedString = input.readLine();
-                if (!printedString.matches(ONLY_LATIN_LETTERS)) {
-                    System.out.println(INVALID_LETTERS_ERROR);
-                    System.exit(0);
-                } else {
-                    twoStrings[i] = printedString.replaceAll(" ", "");
-                }
-            } catch (IOException e) {
-                System.out.println(INCORRECT_INPUT_ERROR);
+            String printedString = input.nextLine();
+            if (!printedString.matches(ONLY_LATIN_LETTERS)) {
+                System.out.println(INVALID_LETTERS_ERROR);
+                System.exit(0);
+            } else {
+                twoStrings[i] = printedString.replaceAll(" ", "");
             }
         }
 
