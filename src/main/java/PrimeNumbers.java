@@ -6,9 +6,9 @@ import java.util.*;
 public class PrimeNumbers {
 
     private static final String QUIT_TEXT = "quit";
-    private static final String WRONG_INPUT_ERROR_TEXT = "Only numbers from 2 to two billion are available.";
-    private static final String PROGRAM_IS_STOPPED_MESSAGE = "Program is stopped.";
-    private static final String INTERRUPTED_ERROR_TEXT = "Program was interrupted.";
+    private static final String WRONG_INPUT_ERROR = "Only numbers from 2 to two billion are available.";
+    private static final String PROGRAM_IS_STOPPED = "Program is stopped.";
+    private static final String INTERRUPTED_ERROR = "Program was interrupted.";
     private static final int FIRST_PRIME_NUMBER = 2;
     private static final String ENTER_THE_NUMBER = "Enter the number (type \"quit\" to stop the program):";
     private static BufferedReader input;
@@ -24,20 +24,20 @@ public class PrimeNumbers {
             try {
                 printedString = input.readLine();
                 if (printedString.equals(QUIT_TEXT)) {
-                    System.out.println(PROGRAM_IS_STOPPED_MESSAGE);
+                    System.out.println(PROGRAM_IS_STOPPED);
                     break;
                 } else {
                     printedNumber = Integer.parseInt(printedString);
                     if (printedNumber < FIRST_PRIME_NUMBER) {
-                        System.out.println(WRONG_INPUT_ERROR_TEXT);
+                        System.out.println(WRONG_INPUT_ERROR);
                     } else {
                         System.out.println(getPrimeNumbersLess(printedNumber));
                     }
                 }
             } catch (IOException e) {
-                System.out.println(INTERRUPTED_ERROR_TEXT);
+                System.out.println(INTERRUPTED_ERROR);
             } catch (NumberFormatException e) {
-                System.out.println(WRONG_INPUT_ERROR_TEXT);
+                System.out.println(WRONG_INPUT_ERROR);
             }
         }
     }

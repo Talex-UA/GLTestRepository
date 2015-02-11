@@ -26,7 +26,7 @@ public class TestTest {
         webDriver.close();
     }*/
 
-    @Test
+/*    @Test
     public void ieWebDriver() throws InterruptedException {
         WebDriver webDriver = new InternetExplorerDriver();
         webDriver.navigate().to("http://mvnrepository.com/");
@@ -35,5 +35,5 @@ public class TestTest {
         webDriver.findElement(By.className("button")).click();
         Assert.assertTrue(webDriver.findElement(By.className("im-description")).getText().contains("JUnit"));
         webDriver.close();
-    }
+    }*/
 }
