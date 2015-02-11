@@ -5,64 +5,46 @@ import java.util.*;
 
 public class PrimeNumbers {
 
-    private static final String QUIT_TEXT = "quit";
     private static final String WRONG_INPUT_ERROR = "Only numbers from 2 to two billion are available.";
-    private static final String PROGRAM_IS_STOPPED = "Program is stopped.";
-    private static final String INTERRUPTED_ERROR = "Program was interrupted.";
     private static final int FIRST_PRIME_NUMBER = 2;
-    private static final String ENTER_THE_NUMBER = "Enter the number (type \"quit\" to stop the program):";
-    private static BufferedReader input;
-    private static String printedString;
-    private static int printedNumber;
+    private static final String ENTER_THE_NUMBER = "Enter the number: ";
 
     public static void main(String[] args) {
+        Scanner input;
+        int printedNumber;
 
-        input = new BufferedReader(new InputStreamReader(System.in));
+        input = new Scanner(System.in);
 
-        while (true) {
-            System.out.println(ENTER_THE_NUMBER);
-            try {
-                printedString = input.readLine();
-                if (printedString.equals(QUIT_TEXT)) {
-                    System.out.println(PROGRAM_IS_STOPPED);
-                    break;
-                } else {
-                    printedNumber = Integer.parseInt(printedString);
-                    if (printedNumber < FIRST_PRIME_NUMBER) {
-                        System.out.println(WRONG_INPUT_ERROR);
-                    } else {
-                        System.out.println(getPrimeNumbersLess(printedNumber));
-                    }
-                }
-            } catch (IOException e) {
-                System.out.println(INTERRUPTED_ERROR);
-            } catch (NumberFormatException e) {
+        System.out.println(ENTER_THE_NUMBER);
+        try {
+            printedNumber = input.nextInt();
+            if (printedNumber < FIRST_PRIME_NUMBER) {
                 System.out.println(WRONG_INPUT_ERROR);
+            } else {
+                System.out.println(getPrimeNumbersLess(printedNumber));
             }
+        } catch (InputMismatchException e) {
+            System.out.println(WRONG_INPUT_ERROR);
         }
     }
 
     private static List<Integer> getPrimeNumbersLess(int printedNumber) {
 
         List<Integer> result = new ArrayList<Integer>();
-
-        for (int i = 2; i <= printedNumber; i++) {
-            if (checkIsPrime(i)) {
+        result.add(2);
+        for (int i = 3; i <= printedNumber; i += 2) {
+            boolean resultBool = true;
+            for (int j = 2; j <= Math.sqrt(i); j++) {
+                if (i % j == 0) {
+                    resultBool = false;
+                    break;
+                }
+            }
+            if (resultBool) {
                 result.add(i);
             }
         }
-
         return result;
     }
 
-    private static boolean checkIsPrime(int printedNumber) {
-        boolean result = true;
-        for (int i = 2; i <= printedNumber / 2; i++) {
-            if (printedNumber % i == 0) {
-                result = false;
-                break;
-            }
-        }
-        return result;
-    }
 }
