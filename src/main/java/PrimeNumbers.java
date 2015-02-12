@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
 
 public class PrimeNumbers {
@@ -10,25 +7,30 @@ public class PrimeNumbers {
     private static final String ENTER_THE_NUMBER = "Enter the number: ";
 
     public static void main(String[] args) {
-        Scanner input;
-        int printedNumber;
 
-        input = new Scanner(System.in);
+        int enteredNumber = userInput();
+        List<Integer> listOfPrimeNumbers = getPrimeNumbersLess(enteredNumber);
+        programOutput(listOfPrimeNumbers);
+    }
+
+    public static int userInput() {
+        Scanner input = new Scanner(System.in);
+        int printedNumber = 0;
 
         System.out.println(ENTER_THE_NUMBER);
         try {
             printedNumber = input.nextInt();
             if (printedNumber < FIRST_PRIME_NUMBER) {
                 System.out.println(WRONG_INPUT_ERROR);
-            } else {
-                System.out.println(getPrimeNumbersLess(printedNumber));
             }
         } catch (InputMismatchException e) {
             System.out.println(WRONG_INPUT_ERROR);
         }
+
+        return printedNumber;
     }
 
-    private static List<Integer> getPrimeNumbersLess(int printedNumber) {
+    public static List<Integer> getPrimeNumbersLess(int printedNumber) {
 
         List<Integer> result = new ArrayList<Integer>();
         result.add(2);
@@ -47,4 +49,7 @@ public class PrimeNumbers {
         return result;
     }
 
+    public static void programOutput(List<Integer> list) {
+        System.out.println(list);
+    }
 }
