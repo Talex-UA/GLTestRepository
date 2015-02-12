@@ -17,7 +17,7 @@ public class Anagram {
         programOutput(areAnagrams);
     }
 
-    private static void programOutput(boolean areAnagrams) {
+    public static void programOutput(boolean areAnagrams) {
         if (areAnagrams) {
             System.out.println(POSITIVE_RESULT);
         } else {
@@ -25,7 +25,7 @@ public class Anagram {
         }
     }
 
-    private static String[] userInput() {
+    public static String[] userInput() {
         Scanner input = new Scanner(System.in);
         String[] twoStrings = new String[2];
 
@@ -45,7 +45,7 @@ public class Anagram {
         return twoStrings;
     }
 
-    private static boolean checkAreStringsAnagrams(String first, String second) {
+    public static boolean checkAreStringsAnagrams(String first, String second) {
 
         first = first.toLowerCase().replaceAll(" ", "");
         second = second.toLowerCase().replaceAll(" ", "");

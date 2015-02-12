@@ -33,7 +33,7 @@ public class Arrays {
         return printedString;
     }
 
-    private static int getIndexOfSmallestPairValueDifference(String printedString) {
+    public static int getIndexOfSmallestPairValueDifference(String printedString) {
 
         List<Integer> array = new ArrayList<Integer>();
         StringBuilder sb = new StringBuilder();
@@ -70,13 +70,13 @@ public class Arrays {
         return result;
     }
 
-    private static void convertToIntegerAndAddToList(
+    public static void convertToIntegerAndAddToList(
             StringBuilder sb, List<Integer> listOfEnteredNumbers) throws NumberFormatException {
         listOfEnteredNumbers.add(Integer.parseInt(sb.toString()));
         sb.setLength(0);
     }
 
-    private static void programOutput(int resultIndex) {
+    public static void programOutput(int resultIndex) {
         System.out.println(SMALLEST_PAIR_INDEX + resultIndex);
     }
 }

@@ -15,18 +15,18 @@ public class CalendarTask {
         programOutput(dayOfWeek);
     }
 
-    private static void programOutput(String dayOfWeek) {
+    public static void programOutput(String dayOfWeek) {
         System.out.println(dayOfWeek);
     }
 
-    private static String userInput() {
+    public static String userInput() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter date (example \"10 October 2010\"): ");
         return sc.nextLine();
     }
 
 
-    private static String detectDayOfWeek(String str) {
+    public static String detectDayOfWeek(String str) {
 
         int dayOfWeek = 0;
 
