@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.util.*;
+import java.util.Arrays;
 
 public class Anagram {
 
@@ -27,38 +28,25 @@ public class Anagram {
             }
         }
 
-        if (twoStrings[0].length() == twoStrings[1].length()) {
-
-            if (checkAreStringsAnagrams(0, twoStrings[0], twoStrings[1])) {
-                System.out.println(POSITIVE_RESULT);
-            } else {
-                System.out.println(NEGATIVE_RESULT);
-            }
+        if (checkAreStringsAnagrams(twoStrings[0], twoStrings[1])) {
+            System.out.println(POSITIVE_RESULT);
         } else {
             System.out.println(NEGATIVE_RESULT);
         }
     }
 
-    private static boolean checkAreStringsAnagrams(int circleIndex, String firstString, String secondString) {
-        boolean result = true;
+    private static boolean checkAreStringsAnagrams(String first, String second) {
 
-        FIRST_LOOP:
-        for (int i = 0; i < firstString.length(); i++) {
-            for (int j = 0; j < secondString.length(); j++) {
-                if (Character.toLowerCase(firstString.charAt(i))
-                        == Character.toLowerCase(secondString.charAt(j))) {
-                    continue FIRST_LOOP;
-                }
-            }
-            result = false;
-            break;
-        }
+        first = first.toLowerCase().replaceAll(" ", "");
+        second = second.toLowerCase().replaceAll(" ", "");
 
-        if (result && circleIndex == 0) {
-            return checkAreStringsAnagrams(++circleIndex, secondString, firstString);
-        }
+        char[] firstArray = first.toCharArray();
+        char[] secondArray = second.toCharArray();
+        
+        Arrays.sort(firstArray);
+        Arrays.sort(secondArray);
 
-        return result;
+        return first.length() == second.length() && Arrays.equals(firstArray, secondArray);
 
     }
 }
