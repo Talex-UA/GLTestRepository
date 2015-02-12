@@ -6,24 +6,38 @@ import java.util.Scanner;
 
 public class CalendarTask {
 
+    public static final String INVALID_DATE = "Unparseable date.";
+
     public static void main(String[] args) {
 
+        String userInputString = userInput();
+        String dayOfWeek = detectDayOfWeek(userInputString);
+        programOutput(dayOfWeek);
+    }
+
+    private static void programOutput(String dayOfWeek) {
+        System.out.println(dayOfWeek);
+    }
+
+    private static String userInput() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter date (example \"10 October 2010\"): ");
-        String str = sc.nextLine();
+        return sc.nextLine();
+    }
+
+
+    private static String detectDayOfWeek(String str) {
+
+        int dayOfWeek = 0;
 
         try {
             Date date = new SimpleDateFormat("dd MMM yyyy").parse(str);
             Calendar c = Calendar.getInstance();
             c.setTime(date);
-            int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-            System.out.println(detectDayOfWeek(dayOfWeek));
+            dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
         } catch (ParseException e) {
-            System.out.println("Unparseable date.");
+            System.out.println(INVALID_DATE);
         }
-    }
-
-    private static String detectDayOfWeek(int dayOfWeek) {
 
         String weekDay = "";
         switch (dayOfWeek) {
