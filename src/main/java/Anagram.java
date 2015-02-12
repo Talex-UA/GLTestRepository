@@ -12,6 +12,20 @@ public class Anagram {
 
     public static void main(String[] args) {
 
+        String[] twoStringsFromUser = userInput();
+        boolean areAnagrams = checkAreStringsAnagrams(twoStringsFromUser[0], twoStringsFromUser[1]);
+        programOutput(areAnagrams);
+    }
+
+    private static void programOutput(boolean areAnagrams) {
+        if (areAnagrams) {
+            System.out.println(POSITIVE_RESULT);
+        } else {
+            System.out.println(NEGATIVE_RESULT);
+        }
+    }
+
+    private static String[] userInput() {
         Scanner input = new Scanner(System.in);
         String[] twoStrings = new String[2];
 
@@ -28,11 +42,7 @@ public class Anagram {
             }
         }
 
-        if (checkAreStringsAnagrams(twoStrings[0], twoStrings[1])) {
-            System.out.println(POSITIVE_RESULT);
-        } else {
-            System.out.println(NEGATIVE_RESULT);
-        }
+        return twoStrings;
     }
 
     private static boolean checkAreStringsAnagrams(String first, String second) {
@@ -42,7 +52,7 @@ public class Anagram {
 
         char[] firstArray = first.toCharArray();
         char[] secondArray = second.toCharArray();
-        
+
         Arrays.sort(firstArray);
         Arrays.sort(secondArray);
 
