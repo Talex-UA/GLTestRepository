@@ -2,10 +2,7 @@ package tasks;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class CalendarTask {
 
@@ -34,7 +31,7 @@ public class CalendarTask {
         int dayOfWeek = 0;
 
         try {
-            Date date = new SimpleDateFormat("dd MMM yyyy").parse(str);
+            Date date = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH).parse(str);
             Calendar c = Calendar.getInstance();
             c.setTime(date);
             if (!isLeapYear(c.get(Calendar.YEAR)) && str.split(" ")[0].equals("29") && str.split(" ")[1].equals("February")) {
