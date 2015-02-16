@@ -1,4 +1,5 @@
 package tasks;
+
 import java.util.*;
 
 public class PrimeNumbers {
@@ -34,17 +35,19 @@ public class PrimeNumbers {
     public static List<Integer> getPrimeNumbersLess(int printedNumber) {
 
         List<Integer> result = new ArrayList<Integer>();
-        result.add(2);
-        for (int i = 3; i <= printedNumber; i += 2) {
-            boolean resultBool = true;
-            for (int j = 2; j <= Math.sqrt(i); j++) {
-                if (i % j == 0) {
-                    resultBool = false;
-                    break;
+        if (printedNumber >= 2) {
+            result.add(2);
+            for (int i = 3; i <= printedNumber; i += 2) {
+                boolean resultBool = true;
+                for (int j = 2; j <= Math.sqrt(i); j++) {
+                    if (i % j == 0) {
+                        resultBool = false;
+                        break;
+                    }
                 }
-            }
-            if (resultBool) {
-                result.add(i);
+                if (resultBool) {
+                    result.add(i);
+                }
             }
         }
         return result;

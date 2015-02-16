@@ -4,10 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-
 import static org.junit.Assert.assertEquals;
 import static tasks.CalendarTask.detectDayOfWeek;
 
@@ -28,7 +24,7 @@ public class Calendar_test {
 
     @Test
     public void currentDate(){
-        assertEquals("Thursday", detectDayOfWeek("15 February 2015"));
+        assertEquals("Thursday", detectDayOfWeek("12 February 2015"));
     }
 
     @Test

@@ -4,10 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static tasks.Arrays.getIndexOfSmallestPairValueDifference;
@@ -24,14 +20,9 @@ public class Arrays_Test {
         assertEquals(3,getIndexOfSmallestPairValueDifference("10 20 30 5 5 60"));
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void wrongInput(){
-        try {
             getIndexOfSmallestPairValueDifference("10 20 30adgfsdgf 60");
-        }
-        catch (Exception e) {
-            fail("There was exception");
-        }
     }
 
     @Test

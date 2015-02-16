@@ -2,6 +2,7 @@ package tasks;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Arrays {
@@ -44,6 +45,8 @@ public class Arrays {
         for (int i = 0; i < printedString.length(); i++) {
             if (printedString.charAt(i) != ' ') {
                 sb.append(printedString.charAt(i));
+            } else if(String.valueOf(printedString.charAt(i)).matches("\\d")) {
+                throw new InputMismatchException();
             } else {
                 convertToIntegerAndAddToList(sb, array);
             }
