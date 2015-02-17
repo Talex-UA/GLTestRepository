@@ -1,5 +1,6 @@
 package mainTests;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -40,17 +41,16 @@ public class Arrays_Test {
         assertEquals(0,getIndexOfSmallestPairValueDifference("-10 10"));
     }
 
-//    @Test
-//    public void oneNumber(){
-//        try (ByteArrayOutputStream myOut2 = new ByteArrayOutputStream();
-//             PrintStream out = new PrintStream(myOut2);) {
-//            System.setOut(out);
-//            getIndexOfSmallestPairValueDifference("10");
-//            out.flush();
-//            myOut2.close();
-//            assertEquals("Please enter two numbers at least.", myOut2.toString().trim());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @Ignore
+    @Test
+    public void oneNumber(){
+        int i = getIndexOfSmallestPairValueDifference("10");
+        assertEquals(1,i);
+    }
+
+    @Test(expected = Exception.class)
+    public void nullString(){
+        int i = getIndexOfSmallestPairValueDifference((int[]) null);
+    }
+
 }
