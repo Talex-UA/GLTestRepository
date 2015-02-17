@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.InputMismatchException;
+
 import static org.junit.Assert.assertEquals;
 import static tasks.CalendarTask.detectDayOfWeek;
 
@@ -21,23 +23,22 @@ public class Calendar_test {
         assertEquals("Tuesday", detectDayOfWeek("29 February 2000"));
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = InputMismatchException.class)
     public void notLeapYearDate(){
         detectDayOfWeek("29 February 1900");
     }
 
-    @Test
+    @Test(expected = InputMismatchException.class)
     public void notDate(){
         detectDayOfWeek("Hello, my name is Sasha");
     }
 
-    @Test
+    @Test(expected = InputMismatchException.class)
     public void nullString(){
         detectDayOfWeek(null);
     }
 
-    @Ignore
-    @Test
+    @Test(expected = InputMismatchException.class)
     public void dateWithSpaces(){
         detectDayOfWeek("  29    February   1900   ");
     }

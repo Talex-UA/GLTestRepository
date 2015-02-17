@@ -15,7 +15,7 @@ import static tasks.Anagram.checkAreStringsAnagrams;
 public class Anagram_Test {
 
     private String generateString(int length) {
-        String alphabet = "qwertyuiopasdfghjklzxcvbnm ";
+        String alphabet = "qwertyuiopasdfghjklzxcvbnm";
         String result = "";
         for (int i = 0; i < length; i++) {
             Random random = new Random();

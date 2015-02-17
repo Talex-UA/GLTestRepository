@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.InputMismatchException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static tasks.Arrays.getIndexOfSmallestPairValueDifference;
@@ -13,44 +15,47 @@ import static tasks.Arrays.getIndexOfSmallestPairValueDifference;
 public class Arrays_Test {
     @Test
     public void simpleArray(){
-        assertEquals(3,getIndexOfSmallestPairValueDifference("10 20 30 40 42 60"));
+        assertEquals(3,getIndexOfSmallestPairValueDifference(new int []{10, 20, 30, 40, 42, 60}));
     }
 
     @Test
     public void equalNumbers(){
-        assertEquals(3,getIndexOfSmallestPairValueDifference("10 20 30 5 5 60"));
-    }
-
-    @Test(expected = Exception.class)
-    public void wrongInput(){
-            getIndexOfSmallestPairValueDifference("10 20 30adgfsdgf 60");
+        assertEquals(3,getIndexOfSmallestPairValueDifference(new int []{10, 20, 30, 5, 5, 60}));
     }
 
     @Test
     public void twoNumbers(){
-        assertEquals(0,getIndexOfSmallestPairValueDifference("10 10000"));
+        assertEquals(0,getIndexOfSmallestPairValueDifference(new int []{10, 10000}));
     }
 
     @Test
     public void twoEqualNumbers(){
-        assertEquals(0,getIndexOfSmallestPairValueDifference("10 10"));
+        assertEquals(0,getIndexOfSmallestPairValueDifference(new int []{10, 10}));
     }
 
     @Test
     public void twoOppositeNumbers(){
-        assertEquals(0,getIndexOfSmallestPairValueDifference("-10 10"));
+        assertEquals(0,getIndexOfSmallestPairValueDifference(new int []{-10, 10}));
     }
 
-    @Ignore
     @Test
-    public void oneNumber(){
-        int i = getIndexOfSmallestPairValueDifference("10");
-        assertEquals(1,i);
+    public void twoCriticalNumbers(){
+        assertEquals(0,getIndexOfSmallestPairValueDifference(new int []{Integer.MIN_VALUE, Integer.MAX_VALUE}));
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = InputMismatchException.class)
+    public void oneNumber(){
+        getIndexOfSmallestPairValueDifference(new int[]{10});
+    }
+
+    @Test(expected = InputMismatchException.class)
+    public void emptyArray(){
+        getIndexOfSmallestPairValueDifference(new int[]{});
+    }
+
+    @Test(expected = InputMismatchException.class)
     public void nullString(){
-        int i = getIndexOfSmallestPairValueDifference((int[]) null);
+        getIndexOfSmallestPairValueDifference((int[]) null);
     }
 
 }
