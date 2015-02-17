@@ -22,9 +22,6 @@ public class PrimeNumbers {
         System.out.println(ENTER_THE_NUMBER);
         try {
             printedNumber = input.nextInt();
-            if (printedNumber < FIRST_PRIME_NUMBER) {
-                System.out.println(WRONG_INPUT_ERROR);
-            }
         } catch (InputMismatchException e) {
             System.out.println(WRONG_INPUT_ERROR);
         }
@@ -34,18 +31,18 @@ public class PrimeNumbers {
 
     public static List<Integer> getPrimeNumbersLess(int printedNumber) {
 
-        List<Integer> result = new ArrayList<Integer>();
-        if (printedNumber >= 2) {
+        List<Integer> result = new ArrayList<>();
+        if (printedNumber >= FIRST_PRIME_NUMBER) {
             result.add(2);
             for (int i = 3; i <= printedNumber; i += 2) {
-                boolean resultBool = true;
+                boolean isPrime = true;
                 for (int j = 2; j <= Math.sqrt(i); j++) {
                     if (i % j == 0) {
-                        resultBool = false;
+                        isPrime = false;
                         break;
                     }
                 }
-                if (resultBool) {
+                if (isPrime) {
                     result.add(i);
                 }
             }
